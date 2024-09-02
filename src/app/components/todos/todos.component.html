@@ -1,0 +1,53 @@
+<div class="container">
+  <form (ngSubmit)="addTodo()" #todoForm="ngForm" class="todo-form">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="newTodo.title" name="title" required>
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="newTodo.completed" name="completed">Completed</mat-checkbox>
+    <button mat-raised-button color="primary" type="submit" class="add-button">Add Todo</button>
+  </form>
+
+  <mat-form-field>
+    <mat-label>Filter by Title</mat-label>
+    <input matInput [(ngModel)]="filterTitle" placeholder="Search by title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Filter by Completion Status</mat-label>
+    <mat-select [(ngModel)]="filterCompleted">
+      <mat-option value="">All</mat-option>
+      <mat-option value="true">Completed</mat-option>
+      <mat-option value="false">Not Completed</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="filteredDataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element" [ngClass]="{'completed': element.completed, 'not-completed': !element.completed}">
+        {{element.title}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button (click)="toggleComplete(element)" class="complete-button">
+          {{ element.completed ? 'Mark as Incomplete' : 'Mark as Complete' }}
+        </button>
+        <button mat-raised-button (click)="openEditDialog(element)" class="edit-button">Edit</button>
+        <button mat-raised-button (click)="openDeleteDialog(element.id)" class="delete-button">Delete</button>
+        <button mat-raised-button (click)="redirect(element)" class="details-button">Details</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

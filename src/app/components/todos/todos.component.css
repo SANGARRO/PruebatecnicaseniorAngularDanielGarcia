@@ -1,0 +1,62 @@
+.container {
+  padding: 16px;
+}
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.todo-form mat-form-field, .todo-form mat-checkbox {
+  margin-bottom: 8px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+mat-dialog-content {
+  padding: 24px;
+}
+
+mat-dialog-actions {
+  padding: 8px;
+}
+
+button {
+  margin-right: 8px;
+}
+
+.add-button {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.complete-button {
+  background-color: #ffc107; /* Amber */
+  color: black;
+}
+
+.edit-button {
+  background-color: #2196f3; /* Blue */
+  color: white;
+}
+
+.delete-button {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.details-button {
+  background-color: #9e9e9e; /* Grey */
+  color: white;
+}
+
+.completed {
+  color: green; /* Text color for completed items */
+}
+
+.not-completed {
+  color: black; /* Text color for not completed items */
+}
